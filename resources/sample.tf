@@ -1,16 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "1.6.5"
-    }
-  }
-}
 
-provider "aws" {
-  region = "us-east-1"
-}
 resource "aws_instance" "sample" {
-  ami="ami-07a6cb7a78915f1a0"
+  ami="ami-03265a0778a880afb"
   instance_type = "t3.micro"
   }
