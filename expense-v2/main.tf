@@ -7,6 +7,13 @@ resource "aws_instance" "frontend" {
     Name = "Frontend"
   }
 }
+resource "aws_route53_record" "frontend" {
+  name    = "frontend-${var.env}"
+  type    = "A"
+  zone_id = var.zone_id
+  ttl=30
+  records = [aws_instance.frontend.private_ip]
+}
 
 resource "aws_instance" "backend" {
   ami = var.ami
@@ -16,6 +23,13 @@ resource "aws_instance" "backend" {
   tags = {
     Name = "Backend"
   }
+}
+resource "aws_route53_record" "backend" {
+  name    = "backend-${var.env}"
+  type    = "A"
+  zone_id = var.zone_id
+  ttl=30
+  records = [aws_instance.backend.private_ip]
 }
 
 resource "aws_instance" "mysql" {
@@ -27,28 +41,16 @@ resource "aws_instance" "mysql" {
     Name = "MySQL"
   }
 }
-
-#Creating DNS Records
-resource "aws_route53_record" "frontend" {
-  name    = "frontend.${var.env}"
-  type    = "A"
-  zone_id = var.zone_id
-  ttl=30
-  records = [aws_instance.frontend.private_ip]
-}
-
-resource "aws_route53_record" "backend" {
-  name    = "backend.${var.env}"
-  type    = "A"
-  zone_id = var.zone_id
-  ttl=30
-  records = [aws_instance.backend.private_ip]
-}
-
 resource "aws_route53_record" "mysql" {
-  name    = "mysql.${var.env}"
+  name    = "mysql-${var.env}"
   type    = "A"
   zone_id = var.zone_id
   ttl=30
   records = [aws_instance.mysql.private_ip]
 }
+
+
+
+
+
+
