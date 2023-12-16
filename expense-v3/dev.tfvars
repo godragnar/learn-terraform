@@ -5,14 +5,14 @@ zone_id = "Z09500041AC5RMFMHJ5ZR"
 components={
   frontend={
     name="frontend"
-    instance_arch="t3.micro"
+    instance_type="t3.micro"
   }
   backend={
     name="backend"
-    instance_arch="t3.micro"
+    instance_type="t3.micro"
   }
   mysql= {
     name          = "mysql"
-    instance_arch = "t3.micro"
+    instance_type = "t3.micro"
   }
 }
