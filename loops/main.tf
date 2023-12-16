@@ -19,9 +19,12 @@ variable "instances1"{
       name="backend"
       instance_arch="t3.micro"
     }
-    mysql={
-      name="mysql"
-      instance_arch="t3.micro"
+    mysql= {
+      name          = "mysql"
+      instance_arch = "t3.micro"
     }
   }
+}
+resource "null_resource" "sample1" {
+  for_each = var.instances1
 }
